@@ -1,0 +1,13 @@
+.specs-panel {
+  display: grid;
+  gap: 10px;
+}
+
+.specs-table-wrap {
+  border: 1px solid #dce5f4;
+  border-radius: 12px;
+}
+
+.specs-table .MuiTableCell-root {
+  border-color: #e1e8f5;
+}

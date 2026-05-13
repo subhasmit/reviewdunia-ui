@@ -1,0 +1,50 @@
+.admin-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.queue-title {
+  margin-bottom: 4px;
+}
+
+.queue-chip {
+  animation: queue-pulse 1.8s ease-in-out infinite;
+}
+
+.admin-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.admin-item {
+  border: 1px solid #dbe4f1;
+  box-shadow: 0 8px 18px #17315412;
+}
+
+.queued-at {
+  margin: 6px 0 10px;
+}
+
+.admin-notes-input {
+  margin: 10px 0;
+}
+
+.seo-sidebar-empty {
+  height: 100%;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+}
+
+@keyframes queue-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}

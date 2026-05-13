@@ -1,0 +1,63 @@
+.uploader-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.uploader-dropzone {
+  border: 2px dashed #9eb0c9;
+  border-radius: 14px;
+  padding: 22px;
+  text-align: center;
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+  background: #fbfdff;
+}
+
+.uploader-dropzone:hover {
+  border-color: #2f6fe4;
+  box-shadow: 0 0 0 4px #2f6fe41f;
+}
+
+.dropzone-active {
+  animation: uploader-pulse 1.1s ease-in-out infinite;
+  border-color: #2f6fe4;
+  background: #f1f6ff;
+}
+
+.uploader-file-chip {
+  justify-self: start;
+}
+
+.uploader-progress {
+  display: grid;
+  gap: 8px;
+}
+
+.queue-state {
+  animation: queue-state-pulse 1.7s ease-in-out infinite;
+}
+
+@keyframes uploader-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 #2f6fe42d;
+  }
+  50% {
+    box-shadow: 0 0 0 8px #2f6fe415;
+  }
+}
+
+@keyframes queue-state-pulse {
+  0%,
+  100% {
+    border-color: #f4c467;
+  }
+  50% {
+    border-color: #f2a41b;
+  }
+}

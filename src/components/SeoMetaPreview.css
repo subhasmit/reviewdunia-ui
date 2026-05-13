@@ -1,0 +1,12 @@
+.seo-preview {
+  display: grid;
+  gap: 6px;
+}
+
+.seo-url {
+  color: #1f874a;
+}
+
+.seo-title {
+  color: #264173;
+}

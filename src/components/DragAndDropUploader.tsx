@@ -1,4 +1,6 @@
 import { useRef, useState, type ChangeEvent, type DragEvent, type KeyboardEvent } from 'react'
+import { Alert, Box, Button, Chip, LinearProgress, Paper, Typography } from '@mui/material'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
 import {
   setDragging,
@@ -8,6 +10,7 @@ import {
 import { useUploadScreenshotMutation } from '../services/api'
 import type { MatchResult } from '../types'
 import { MatchCard } from './MatchCard'
+import './DragAndDropUploader.css'
 
 const HIGH_CONFIDENCE_SCORE = 80
 
@@ -70,23 +73,30 @@ export function DragAndDropUploader() {
   }
 
   return (
-    <section className="panel">
-      <h2>Upload Screenshot to Match Reviews</h2>
-      <div
+    <Paper component="section" elevation={0} className="panel uploader-panel">
+      <Typography variant="h5" component="h2">
+        Upload Screenshot to Match Reviews
+      </Typography>
+      <motion.div
         role="button"
         tabIndex={0}
         onKeyDown={onKeyDown}
         onDragOver={onDragOver}
         onDragLeave={onDragLeave}
         onDrop={onDrop}
-        className={`dropzone ${isDragging ? 'dropzone-active' : ''}`}
+        className={`dropzone uploader-dropzone ${isDragging ? 'dropzone-active' : ''}`}
         aria-label="Drop screenshot here or press enter to browse files"
+        whileHover={{ scale: 1.01 }}
+        animate={isDragging ? { scale: [1, 1.015, 1] } : { scale: 1 }}
+        transition={{ duration: 0.45 }}
       >
-        <p>Drag and drop screenshot here</p>
-        <p>or</p>
-        <label htmlFor="screenshot-upload" className="primary-button">
+        <Typography>Drag and drop screenshot here</Typography>
+        <Typography variant="body2" color="text.secondary">
+          or
+        </Typography>
+        <Button type="button" variant="contained" onClick={() => inputRef.current?.click()}>
           Browse files
-        </label>
+        </Button>
         <input
           id="screenshot-upload"
           name="screenshot-upload"
@@ -97,25 +107,49 @@ export function DragAndDropUploader() {
           accept="image/*"
           onChange={onInputChange}
         />
-      </div>
-      {selectedFileName ? <p>Selected file: {selectedFileName}</p> : null}
-      {isLoading ? <p>Uploading and matching screenshot...</p> : null}
-      {isError ? <p role="alert">Upload failed. Please try again.</p> : null}
+      </motion.div>
+      {selectedFileName ? (
+        <Chip label={`Selected file: ${selectedFileName}`} color="info" className="uploader-file-chip" />
+      ) : null}
+
+      <AnimatePresence>
+        {isLoading ? (
+          <motion.div
+            className="uploader-progress"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+          >
+            <Typography>Uploading and matching screenshot...</Typography>
+            <LinearProgress />
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+
+      {isError ? <Alert severity="error">Upload failed. Please try again.</Alert> : null}
 
       {highConfidenceMatches.length > 0 ? (
-        <div className="match-grid" aria-label="High confidence matches">
-          {highConfidenceMatches.map((match) => (
-            <MatchCard key={match.id} {...match} />
+        <Box className="match-grid" aria-label="High confidence matches">
+          {highConfidenceMatches.map((match, index) => (
+            <MatchCard key={match.id} {...match} animationOrder={index} />
           ))}
-        </div>
+        </Box>
       ) : null}
 
-      {queuedRequestId ? (
-        <div className="queued-banner" role="status">
-          <p>No high-confidence match found (&lt;80%).</p>
-          <p>Queued for manual review. request_id: {queuedRequestId}</p>
-        </div>
-      ) : null}
-    </section>
+      <AnimatePresence>
+        {queuedRequestId ? (
+          <motion.div
+            className="queued-banner queue-state"
+            role="status"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+          >
+            <Typography>No high-confidence match found (&lt;80%).</Typography>
+            <Typography>Queued for manual review. request_id: {queuedRequestId}</Typography>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </Paper>
   )
 }

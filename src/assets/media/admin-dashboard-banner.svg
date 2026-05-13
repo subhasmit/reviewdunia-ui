@@ -1,0 +1,24 @@
+<svg width="1440" height="360" viewBox="0 0 1440 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="adminBg" x1="0" y1="0" x2="1440" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111525" />
+      <stop offset="1" stop-color="#1A2340" />
+    </linearGradient>
+    <linearGradient id="adminLine" x1="180" y1="60" x2="1260" y2="318" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#20E8B8" />
+      <stop offset="1" stop-color="#59B2FF" />
+    </linearGradient>
+  </defs>
+  <rect width="1440" height="360" rx="24" fill="url(#adminBg)" />
+  <path d="M132 276H1310" stroke="#354264" stroke-width="1.5" stroke-linecap="round" />
+  <path d="M132 240H1310" stroke="#354264" stroke-width="1.5" stroke-linecap="round" />
+  <path d="M132 204H1310" stroke="#354264" stroke-width="1.5" stroke-linecap="round" />
+  <path d="M132 168H1310" stroke="#354264" stroke-width="1.5" stroke-linecap="round" />
+  <path d="M132 132H1310" stroke="#354264" stroke-width="1.5" stroke-linecap="round" />
+  <path d="M132 96H1310" stroke="#354264" stroke-width="1.5" stroke-linecap="round" />
+  <path d="M168 78V294M316 78V294M464 78V294M612 78V294M760 78V294M908 78V294M1056 78V294M1204 78V294" stroke="#354264" stroke-width="1.2" />
+  <path d="M160 248C322 257 474 165 634 184C770 200 872 286 1013 266C1147 247 1230 185 1282 138" stroke="url(#adminLine)" stroke-width="3.2" stroke-linecap="round" />
+  <circle cx="634" cy="184" r="7" fill="#20E8B8" />
+  <circle cx="1013" cy="266" r="7" fill="#59B2FF" />
+  <circle cx="1282" cy="138" r="7" fill="#7C4DFF" />
+</svg>

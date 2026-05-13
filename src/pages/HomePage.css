@@ -1,0 +1,23 @@
+.home-banner {
+  position: relative;
+  overflow: hidden;
+}
+
+.home-banner::after {
+  content: '';
+  position: absolute;
+  inset: auto -12% -45% auto;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #4f88ff30 0%, #4f88ff00 70%);
+}
+
+.home-subtitle {
+  margin: 8px 0 16px;
+}
+
+.home-illustration {
+  display: grid;
+  place-items: center;
+}

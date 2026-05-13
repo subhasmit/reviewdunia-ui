@@ -1,4 +1,6 @@
+import { Box, Button, Paper, Typography } from '@mui/material'
 import type { AffiliateLink } from '../types'
+import './AffiliateCTAs.css'
 
 interface AffiliateCTAsProps {
   links: AffiliateLink[]
@@ -6,21 +8,24 @@ interface AffiliateCTAsProps {
 
 export function AffiliateCTAs({ links }: AffiliateCTAsProps) {
   return (
-    <section className="panel">
-      <h2>Best Price Offers</h2>
-      <div className="button-row">
+    <Paper component="section" elevation={0} className="panel affiliate-panel">
+      <Typography variant="h5" component="h2">
+        Best Price Offers
+      </Typography>
+      <Box className="button-row affiliate-buttons">
         {links.map((link) => (
-          <a
+          <Button
             key={link.label}
             href={link.url}
             target="_blank"
             rel="noreferrer"
-            className="primary-button"
+            variant="contained"
+            className="affiliate-button"
           >
             {link.label}
-          </a>
+          </Button>
         ))}
-      </div>
-    </section>
+      </Box>
+    </Paper>
   )
 }

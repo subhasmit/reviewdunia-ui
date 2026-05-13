@@ -1,3 +1,8 @@
+import { Box, Paper, Typography } from '@mui/material'
+import { motion } from 'framer-motion'
+import { productHeroBackdrop } from '../assets/media'
+import './ProductHero.css'
+
 interface ProductHeroProps {
   title: string
   subtitle: string
@@ -8,16 +13,28 @@ export function ProductHero({ title, subtitle, images }: ProductHeroProps) {
   const firstImage = images[0]
 
   return (
-    <section className="panel">
-      <h2>{title}</h2>
-      <p>{subtitle}</p>
-      <div className="hero-carousel">
+    <Paper
+      component={motion.section}
+      elevation={0}
+      className="panel product-hero"
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+    >
+      <Typography variant="h4" component="h2">
+        {title}
+      </Typography>
+      <Typography variant="body1" className="hero-subtitle">
+        {subtitle}
+      </Typography>
+      <Box className="hero-carousel">
+        <img src={productHeroBackdrop} alt="" className="hero-backdrop" />
         {firstImage ? (
-          <img src={firstImage} alt={`${title} hero`} className="hero-image" />
+          <Box component="img" src={firstImage} alt={`${title} hero`} className="hero-image" />
         ) : (
-          <div className="hero-placeholder">Carousel placeholder</div>
+          <Box className="hero-placeholder">Hero media coming soon</Box>
         )}
-      </div>
-    </section>
+      </Box>
+    </Paper>
   )
 }

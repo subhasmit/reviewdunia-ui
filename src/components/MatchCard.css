@@ -1,0 +1,15 @@
+.match-card {
+  border: 1px solid #dbe5f3;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.card-thumbnail {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.card-content {
+  display: grid;
+  gap: 10px;
+}

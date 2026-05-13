@@ -1,0 +1,28 @@
+<svg width="1440" height="520" viewBox="0 0 1440 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="40" x2="1360" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101423" />
+      <stop offset="1" stop-color="#191E31" />
+    </linearGradient>
+    <radialGradient id="pulseA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(340 120) rotate(30) scale(420 230)">
+      <stop stop-color="#2FF9D6" stop-opacity="0.46" />
+      <stop offset="1" stop-color="#2FF9D6" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="pulseB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1080 380) rotate(180) scale(500 250)">
+      <stop stop-color="#7C4DFF" stop-opacity="0.45" />
+      <stop offset="1" stop-color="#7C4DFF" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="line" x1="250" y1="80" x2="1190" y2="460" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2FF9D6" stop-opacity="0.8" />
+      <stop offset="1" stop-color="#7C4DFF" stop-opacity="0.9" />
+    </linearGradient>
+  </defs>
+  <rect width="1440" height="520" rx="28" fill="url(#bg)" />
+  <rect width="1440" height="520" rx="28" fill="url(#pulseA)" />
+  <rect width="1440" height="520" rx="28" fill="url(#pulseB)" />
+  <path d="M160 378C248 332 332 327 430 344C560 367 637 447 788 434C939 422 1050 280 1248 310" stroke="url(#line)" stroke-width="3.5" stroke-linecap="round" />
+  <path d="M188 188C332 155 497 187 606 278C699 356 806 399 949 371C1052 351 1125 296 1237 231" stroke="#2FF9D6" stroke-opacity="0.44" stroke-width="2.5" stroke-linecap="round" />
+  <circle cx="430" cy="344" r="7" fill="#2FF9D6" />
+  <circle cx="788" cy="434" r="7" fill="#7C4DFF" />
+  <circle cx="949" cy="371" r="7" fill="#2FF9D6" />
+</svg>

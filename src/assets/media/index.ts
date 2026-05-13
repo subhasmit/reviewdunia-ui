@@ -1,0 +1,6 @@
+export { default as homepageHeroBanner } from './homepage-hero-banner.svg'
+export { default as productHeroBackdrop } from './product-hero-backdrop.svg'
+export { default as adminDashboardBanner } from './admin-dashboard-banner.svg'
+export { default as sectionIllustrationReviews } from './section-illustration-reviews.svg'
+export { default as sectionIllustrationAnalytics } from './section-illustration-analytics.svg'
+export { default as sectionIllustrationUpload } from './section-illustration-upload.svg'

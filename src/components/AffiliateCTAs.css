@@ -1,0 +1,12 @@
+.affiliate-panel {
+  display: grid;
+  gap: 12px;
+}
+
+.affiliate-buttons {
+  margin-top: 4px;
+}
+
+.affiliate-button {
+  text-transform: none;
+}
