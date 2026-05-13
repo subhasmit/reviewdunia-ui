@@ -1,11 +1,19 @@
-import { AppBar, Box, Button, Container, Toolbar, Typography } from '@mui/material'
+import { AppBar, Box, Button, CircularProgress, Container, Toolbar, Typography } from '@mui/material'
+import { lazy, Suspense } from 'react'
 import { Link as RouterLink, Route, Routes } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from './app/hooks'
 import './App.css'
-import { AdminDashboardPage } from './pages/AdminDashboardPage'
-import { HomePage } from './pages/HomePage'
-import { ProductDetailPage } from './pages/ProductDetailPage'
 import { toggleAdminMode } from './features/ui/uiSlice'
+
+const HomePage = lazy(() =>
+  import('./pages/HomePage').then((module) => ({ default: module.HomePage })),
+)
+const ProductDetailPage = lazy(() =>
+  import('./pages/ProductDetailPage').then((module) => ({ default: module.ProductDetailPage })),
+)
+const AdminDashboardPage = lazy(() =>
+  import('./pages/AdminDashboardPage').then((module) => ({ default: module.AdminDashboardPage })),
+)
 
 function App() {
   const dispatch = useAppDispatch()
@@ -46,19 +54,28 @@ function App() {
       </AppBar>
 
       <Container component="main" maxWidth="lg" className="page-container">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/products/:id" element={<ProductDetailPage />} />
-          <Route path="/admin" element={<AdminDashboardPage />} />
-          <Route
-            path="*"
-            element={
-              <Typography variant="h6" className="not-found">
-                Page not found.
-              </Typography>
-            }
-          />
-        </Routes>
+        <Suspense
+          fallback={
+            <Box className="page-loading">
+              <CircularProgress size={28} />
+              <Typography>Loading page...</Typography>
+            </Box>
+          }
+        >
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/products/:id" element={<ProductDetailPage />} />
+            <Route path="/admin" element={<AdminDashboardPage />} />
+            <Route
+              path="*"
+              element={
+                <Typography variant="h6" className="not-found">
+                  Page not found.
+                </Typography>
+              }
+            />
+          </Routes>
+        </Suspense>
       </Container>
     </Box>
   )

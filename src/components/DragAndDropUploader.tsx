@@ -1,6 +1,14 @@
-import { useRef, useState, type ChangeEvent, type DragEvent, type KeyboardEvent } from 'react'
+import {
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+  type ChangeEvent,
+  type DragEvent,
+  type KeyboardEvent,
+} from 'react'
 import { Alert, Box, Button, Chip, LinearProgress, Paper, Typography } from '@mui/material'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
 import {
   setDragging,
@@ -15,6 +23,7 @@ import './DragAndDropUploader.css'
 const HIGH_CONFIDENCE_SCORE = 80
 
 export function DragAndDropUploader() {
+  const reduceMotion = useReducedMotion()
   const inputRef = useRef<HTMLInputElement | null>(null)
   const dispatch = useAppDispatch()
   const { isDragging, selectedFileName, queuedRequestId } = useAppSelector(
@@ -23,11 +32,12 @@ export function DragAndDropUploader() {
   const [matches, setMatches] = useState<MatchResult[]>([])
   const [uploadScreenshot, { isLoading, isError }] = useUploadScreenshotMutation()
 
-  const highConfidenceMatches = matches.filter(
-    (match) => match.scorePercentage >= HIGH_CONFIDENCE_SCORE,
+  const highConfidenceMatches = useMemo(
+    () => matches.filter((match) => match.scorePercentage >= HIGH_CONFIDENCE_SCORE),
+    [matches],
   )
 
-  const runUpload = async (file: File) => {
+  const runUpload = useCallback(async (file: File) => {
     dispatch(setSelectedFileName(file.name))
     const response = await uploadScreenshot(file)
 
@@ -38,7 +48,7 @@ export function DragAndDropUploader() {
       )
       dispatch(setQueuedRequestId(hasStrongMatch ? null : response.data.request_id))
     }
-  }
+  }, [dispatch, uploadScreenshot])
 
   const onInputChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
@@ -86,9 +96,15 @@ export function DragAndDropUploader() {
         onDrop={onDrop}
         className={`dropzone uploader-dropzone ${isDragging ? 'dropzone-active' : ''}`}
         aria-label="Drop screenshot here or press enter to browse files"
-        whileHover={{ scale: 1.01 }}
-        animate={isDragging ? { scale: [1, 1.015, 1] } : { scale: 1 }}
-        transition={{ duration: 0.45 }}
+        whileHover={reduceMotion ? undefined : { scale: 1.01 }}
+        animate={
+          reduceMotion
+            ? undefined
+            : isDragging
+              ? { scale: [1, 1.015, 1] }
+              : { scale: 1 }
+        }
+        transition={reduceMotion ? undefined : { duration: 0.45 }}
       >
         <Typography>Drag and drop screenshot here</Typography>
         <Typography variant="body2" color="text.secondary">

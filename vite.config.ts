@@ -11,6 +11,30 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules/@mui') || id.includes('node_modules/@emotion')) {
+            return 'mui-vendor'
+          }
+          if (id.includes('node_modules/framer-motion')) {
+            return 'motion-vendor'
+          }
+          if (
+            id.includes('node_modules/@reduxjs/toolkit') ||
+            id.includes('node_modules/react-redux')
+          ) {
+            return 'state-vendor'
+          }
+          if (id.includes('node_modules/react-router-dom')) {
+            return 'router-vendor'
+          }
+          return undefined
+        },
+      },
+    },
+  },
   test: {
     environment: 'jsdom',
     globals: true,

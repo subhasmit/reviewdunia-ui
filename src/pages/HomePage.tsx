@@ -8,7 +8,15 @@ export function HomePage() {
   return (
     <Box className="home-page stack">
       <Paper component="section" elevation={0} className="panel home-banner">
-        <img src={homepageHeroBanner} alt="" className="section-banner" />
+        <img
+          src={homepageHeroBanner}
+          alt=""
+          className="section-banner"
+          width={1200}
+          height={540}
+          fetchPriority="high"
+          decoding="async"
+        />
         <Typography variant="h4" component="h2">
           Welcome to ReviewDunia
         </Typography>
@@ -20,7 +28,15 @@ export function HomePage() {
         </Button>
       </Paper>
       <Paper component="section" elevation={0} className="panel home-illustration">
-        <img src={sectionIllustrationUpload} alt="" className="section-illustration" />
+        <img
+          src={sectionIllustrationUpload}
+          alt=""
+          className="section-illustration"
+          width={1200}
+          height={420}
+          loading="lazy"
+          decoding="async"
+        />
       </Paper>
       <DragAndDropUploader />
     </Box>

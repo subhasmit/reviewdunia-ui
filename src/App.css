@@ -42,3 +42,11 @@
 .not-found {
   text-align: center;
 }
+
+.page-loading {
+  min-height: 40vh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 10px;
+}
