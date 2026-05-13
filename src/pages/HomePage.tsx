@@ -15,7 +15,7 @@ export function HomePage() {
         <Typography variant="body1" className="home-subtitle">
           Discover verified product reviews and compare offers in one place.
         </Typography>
-        <Button component={RouterLink} to="/products/demo-product" variant="contained">
+        <Button component={RouterLink} to="/products/1" variant="contained">
           View demo product review
         </Button>
       </Paper>

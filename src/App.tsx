@@ -27,7 +27,7 @@ function App() {
             <Button component={RouterLink} to="/" color="inherit">
               Home
             </Button>
-            <Button component={RouterLink} to="/products/demo-product" color="inherit">
+            <Button component={RouterLink} to="/products/1" color="inherit">
               Product
             </Button>
             <Button component={RouterLink} to="/admin" color="inherit">
